@@ -7,7 +7,7 @@ This daemon syncs external monitors with the brightness level of your Mac's buil
 Macs without built-in displays are not supported.
 External monitors must have native macOS support or implement [DDC](https://en.wikipedia.org/wiki/Display_Data_Channel).
 
-By default, the daemon updates every thirty seconds; if you want to change this, modify ```kTimerRate``` in ```main.c```.
+By default, the daemon updates every thirty seconds; if you want to change this, modify ```kTimerRate``` in ```main.c```. You can tweak ```kExternalDisplayListMaxSize``` to lower memory usage.
 
 ### Install
 ```
@@ -16,7 +16,11 @@ make install_plist
 make run
 ```
 
-Manual: Move the ```ExternalDisplayAutoBrightnessAgent``` executable to ```/usr/local/libexec```, and the ```plist``` to ```~/Library/LaunchAgents```. Run ```launchctl load ~/Library/LaunchAgents/net.gofake1.ExternalDisplayAutoBrightnessAgent.plist``` to start the daemon.
+Manual: Move the executable to ```/usr/local/libexec```, and the plist to ```~/Library/LaunchAgents```. Run
+```
+launchctl load ~/Library/LaunchAgents/net.gofake1.ExternalDisplayAutoBrightnessAgent.plist
+```
+to start the daemon.
 
 ### Build
 Requires macOS, a C compiler, and ```make```. Tested on macOS 10.13.
@@ -26,7 +30,8 @@ Report DDC issues to [ddcctl](https://github.com/kfix/ddcctl).
 ```/usr/local/var/log/net.gofake1.ExternalDisplayAutoBrightnessAgent.log``` contains warnings and errors that would be helpful in bug reports.
 
 ### Acknowledgments
-Authors of [brightness](https://github.com/nriley/brightness)
-Authors of [ddcctl](https://github.com/kfix/ddcctl)
+Authors of [brightness](https://github.com/nriley/brightness).
+
+Authors of [ddcctl](https://github.com/kfix/ddcctl).
 
 *This project is available under the MIT License.*
